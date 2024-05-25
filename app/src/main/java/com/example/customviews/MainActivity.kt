@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.customviews.ui.theme.CustomViewsTheme
 import com.example.customviews.ui.view.BigButtonView
+import com.example.customviews.ui.view.GateControlView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,10 @@ class MainActivity : ComponentActivity() {
                                 label = { Text(text = "Big Button") },
                                 selected = false,
                                 onClick = { showing = "bigButton" })
+                            NavigationDrawerItem(
+                                label = { Text(text = "Gate Control") },
+                                selected = false,
+                                onClick = { showing = "gateControl" })
                         }
                     },
                     gesturesEnabled = true
@@ -53,6 +58,7 @@ class MainActivity : ComponentActivity() {
                         Box(modifier = Modifier.padding(innerPadding)) {
                             when (showing) {
                                 "bigButton" -> BigButtonView()
+                                "gateControl" -> GateControlView()
                             }
                         }
                     }

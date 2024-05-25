@@ -158,7 +158,7 @@ fun RadiatingWaves(
             lightness = pos.pow(exponent),
             alpha = .3f
         )
-    } + (1f to Color.hsl(0f, 0f, lightness = 0f, alpha = 0f))
+    } + (1f to Color.hsl(0f, 0f, lightness = 0f, alpha = 1f))
     val loopColors = Array(numberOfWaves + 1) { 0 }
         .withIndex()
         .flatMap { x -> colors.map { p -> (x.index + p.first) / numberOfWaves.toFloat() to p.second } }
