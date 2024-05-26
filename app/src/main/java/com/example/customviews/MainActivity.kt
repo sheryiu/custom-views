@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.example.customviews.ui.theme.CustomViewsTheme
 import com.example.customviews.ui.view.BigButtonView
 import com.example.customviews.ui.view.GateControlView
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
             var showing by remember { mutableStateOf("bigButton") }
             CustomViewsTheme {
                 ModalNavigationDrawer(
+                    drawerState = drawerState,
                     drawerContent = {
                         ModalDrawerSheet {
                             Text(text = "Custom Views", modifier = Modifier.padding(all = 16.dp))
@@ -45,11 +47,21 @@ class MainActivity : ComponentActivity() {
                             NavigationDrawerItem(
                                 label = { Text(text = "Big Button") },
                                 selected = false,
-                                onClick = { showing = "bigButton" })
+                                onClick = {
+                                    showing = "bigButton"
+                                    scope.launch {
+                                        drawerState.close()
+                                    }
+                                })
                             NavigationDrawerItem(
                                 label = { Text(text = "Gate Control") },
                                 selected = false,
-                                onClick = { showing = "gateControl" })
+                                onClick = {
+                                    showing = "gateControl"
+                                    scope.launch {
+                                        drawerState.close()
+                                    }
+                                })
                         }
                     },
                     gesturesEnabled = true
